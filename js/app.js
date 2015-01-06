@@ -67,6 +67,7 @@ $(document).ready(function(){
 	function getGuessResult(guess) {
 		debug('logGuess called. number: ' + number + ' guess: ' + guess + ' prevGuess: ' + prevGuess + ' guessDifference: ' + Math.abs(number - guess));
 		var guessResult = "";
+		
 		if(prevGuess != 0){
 			if (Math.abs(number - guess) == 0) {
 				guessResult = "You Got It!";
