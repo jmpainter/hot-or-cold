@@ -44,6 +44,21 @@ $(document).ready(function(){
 	});
 
 	$('#guessButton').click(function () {
+		submitGuess();
+	});
+
+	$(document).keydown(function(event) {
+		if (event.keyCode == 10 || event.keyCode == 13) {
+			event.preventDefault();
+			submitGuess();
+		}
+	});	
+
+	$('form').submit(function(event){
+		event.preventDefault();  
+	});
+
+	function submitGuess () {
 		var guess = $('#userGuess').val();
 		if (isNaN(guess)) 
 		{
@@ -60,9 +75,8 @@ $(document).ready(function(){
 		$('#count').text(++numGuesses);
 		$('#feedback').text(getGuessResult(guess));		
 		prevGuess = guess;			
-		$('#guessList').append('<li>' + guess + '</li>');
-
-	});
+		$('#guessList').append('<li>' + guess + '</li>');		
+	}
 
 	function getGuessResult(guess) {
 		debug('logGuess called. number: ' + number + ' guess: ' + guess + ' prevGuess: ' + prevGuess + ' guessDifference: ' + Math.abs(number - guess));
@@ -101,8 +115,7 @@ $(document).ready(function(){
 			}
 		}
 		return guessResult;
-		
-	}
+	}	
 });
 
 
